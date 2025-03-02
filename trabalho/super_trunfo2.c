@@ -26,7 +26,7 @@ int main()
     printf("Digite o codigo da carta começando pela letra referente ao estado (ex: A01,B04,C07): ");
     scanf("%s", codigo1);
     printf("Digite a quantidade de pessoas habitando nesse estado: ");
-    scanf("%d", &populacao1);
+    scanf("%u", &populacao1);
     printf("Digite o tamanho da area em km2 do seu estado: ");
     scanf("%f", &area1);
     printf("Digite o pib de seu estado: ");
@@ -34,7 +34,7 @@ int main()
     printf("Digite uma cidade do seu estado escolhido: ");
     scanf("%s", cidade1);
     printf("Digite a quantidade de pontos turisticos: ");
-    scanf("%d", &turistico1);
+    scanf("%u", &turistico1);
     densidade1 = calcularValores(populacao1, area1);
     pibCapital1 = calcularValores(pib1,populacao1);
     superPoder1 = (populacao1+area1+pib1+turistico1+pibCapital1)+1/densidade1;
@@ -56,7 +56,7 @@ int main()
     printf("Digite o codigo da carta começando pela letra referente ao estado (ex: A01,B04,C07): ");
     scanf("%s", codigo2);
     printf("Digite a quantidade de pessoas habitando nesse estado: ");
-    scanf("%d", &populacao2);
+    scanf("%u", &populacao2);
     printf("Digite o tamanho da area em km2 do seu estado: ");
     scanf("%f", &area2);
     printf("Digite o pib de seu estado: ");
@@ -64,7 +64,7 @@ int main()
     printf("Digite uma cidade do seu estado escolhido: ");
     scanf("%s", cidade2);
     printf("Digite a quantidade de pontos turisticos: ");
-    scanf("%d", &turistico2);
+    scanf("%u", &turistico2);
     densidade2 = calcularValores(populacao2, area2);
     pibCapital2 = calcularValores(pib2,populacao2);
     superPoder2 = (populacao2+area2+pib2+turistico2+pibCapital2)+1/densidade2;
