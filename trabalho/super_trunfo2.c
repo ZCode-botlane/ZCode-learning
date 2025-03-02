@@ -8,6 +8,16 @@ float calcularValores(int valor1, float valor2)
     return resultado;
 }
 
+void comparacao(int unsigned carta1, int unsigned carta2)
+{
+    if (carta1 > carta2)
+    {
+        printf("carta1 vence\n");
+    } else {
+        printf("carta2 vence\n");
+    }
+}
+
 int main()
 {
     //primeira carta (variaveis)
@@ -73,14 +83,15 @@ int main()
     printf("\nCARTA01 \nEstado: %c\nCodigo: %s\nCidade: %s\nPopulação: %d\nArea: %f\nPIB: %f\nDensidade Populacional: %f\nPIB per Capita: %f\nSuper poder: %f\n\n", estado1, codigo1, cidade1, populacao1, area1, pib1, densidade1, pibCapital1, superPoder1);
     printf("CARTA02 \nEstado: %c\nCodigo: %s\nCidade: %s\nPopulação: %d\nArea: %f\nPIB: %f\nDensidade Populacional: %f\nPIB per Capita: %f\nSuper poder: %f\n\n", estado2, codigo2, cidade2, populacao2, area2, pib2, densidade2, pibCapital2,superPoder2);
 
-    //comparação das cartas
-    int populacao = populacao1 > populacao2;
-    int area = area1 > area2;
-    int pib = pib1 > pib2;
-    int densidade = densidade1 > densidade2;
-    int pibCapital = pibCapital1 > pibCapital2;
-    int superPoder = superPoder1 > superPoder2;
+    comparacao(populacao1, populacao2);
+    //comparacao(area1,area2);
+    //comparacao(pib1,pib2);
+    //comparacao(pibCapital1, pibCapital2);
+    /*if(densidade1 > densidade2)
+    {
+        printf("carta2 vence/n");
+    }else{
+        printf("carta1 vence/n");
+    }*/
 
-    //print das comparações das cartas
-    printf("CARTA01 x CARTA02\nPopulação: %d\nArea: %d\nPIB: %d\nDensidade Populacional: %d\nPIB per Capita: %d\nSuper poder: %d\n\n", populacao, area, pib, densidade, pibCapital, superPoder);
 }
