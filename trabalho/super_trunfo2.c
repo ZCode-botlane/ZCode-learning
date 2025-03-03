@@ -1,4 +1,28 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+//primeira carta (variaveis)
+int unsigned populacao1;
+float area1;
+float pib1;
+char estado1;
+char codigo1 [20],cidade1 [50];
+int unsigned turistico1;
+float densidade1;
+float pibCapital1;
+float superPoder1;
+int escolhaComparacao;
+
+//segunda carta (variaveis)
+int unsigned populacao2;
+float area2;
+float pib2;
+char estado2;
+char codigo2 [20],cidade2 [50];
+int unsigned turistico2;
+float densidade2;
+float pibCapital2;
+float superPoder2;
 
 float calcularValores(int valor1, float valor2)
 {
@@ -12,26 +36,48 @@ void comparacao(int unsigned carta1, int unsigned carta2)
 {
     if (carta1 > carta2)
     {
-        printf("carta1 vence\n");
+        printf("\n### CARTA1 VENCE ###\n");
     } else {
-        printf("carta2 vence\n");
+        printf("\n### CARTA2 VENCE ###\n");
+    }
+}
+
+void menuInterativo(int escolha)
+{
+    switch (escolha)
+    {
+    case 1:
+        comparacao(populacao1,populacao2);
+        break;
+    case 2:
+        comparacao(area1,area2);
+        break;
+    case 3:
+        comparacao(pib1,pib2);
+        break;
+    case 4:
+        comparacao(turistico1,turistico2);
+        break;
+    case 5:
+        comparacao(superPoder1,superPoder2);
+        break;
+    case 6:
+        if (densidade1 < densidade2)
+        {
+            printf("carta1 vence");
+        }else{
+            printf("carta2 vence");
+        }
+    default:
+        printf("Escolha invalida");
+        break;
     }
 }
 
 int main()
 {
-    //primeira carta (variaveis)
-    int unsigned populacao1;
-    float area1;
-    float pib1;
-    char estado1;
-    char codigo1 [20],cidade1 [50];
-    int unsigned turistico1;
-    float densidade1;
-    float pibCapital1;
-    float superPoder1;
     //envio das informações para as variaveis
-    printf("Digite uma letra de algum estado1 (A-H): ");
+    printf("Digite uma letra de algum estado (A-H): ");
     scanf(" %c", &estado1);
     printf("Digite o codigo da carta começando pela letra referente ao estado (ex: A01,B04,C07): ");
     scanf("%s", codigo1);
@@ -49,19 +95,8 @@ int main()
     pibCapital1 = calcularValores(pib1,populacao1);
     superPoder1 = (populacao1+area1+pib1+turistico1+pibCapital1)+1/densidade1;
 
-    //segunda carta (variaveis)
-    int unsigned populacao2;
-    float area2;
-    float pib2;
-    char estado2;
-    char codigo2 [20],cidade2 [50];
-    int unsigned turistico2;
-    float densidade2;
-    float pibCapital2;
-    float superPoder2;
-
     //envio das informações para as variaveis
-    printf("\nDigite uma letra de outro estado (A-H): ");
+    printf("Digite uma letra de algum estado (A-H): ");
     scanf(" %c", &estado2);
     printf("Digite o codigo da carta começando pela letra referente ao estado (ex: A01,B04,C07): ");
     scanf("%s", codigo2);
@@ -79,19 +114,13 @@ int main()
     pibCapital2 = calcularValores(pib2,populacao2);
     superPoder2 = (populacao2+area2+pib2+turistico2+pibCapital2)+1/densidade2;
 
+    //comparação
+    int escolha;
+    printf("\nCHOQUE DE ATRIBUTOS\n\n1.População\n2.Area\n3.PIB\n4.Pontos turisticos\n5.Super poder\n6.Densidade demográdica\nescolha um numero: ");
+    scanf("%d", &escolha);
+    menuInterativo(escolha);
+
     //print das informações das cartas
     printf("\nCARTA01 \nEstado: %c\nCodigo: %s\nCidade: %s\nPopulação: %d\nArea: %f\nPIB: %f\nDensidade Populacional: %f\nPIB per Capita: %f\nSuper poder: %f\n\n", estado1, codigo1, cidade1, populacao1, area1, pib1, densidade1, pibCapital1, superPoder1);
     printf("CARTA02 \nEstado: %c\nCodigo: %s\nCidade: %s\nPopulação: %d\nArea: %f\nPIB: %f\nDensidade Populacional: %f\nPIB per Capita: %f\nSuper poder: %f\n\n", estado2, codigo2, cidade2, populacao2, area2, pib2, densidade2, pibCapital2,superPoder2);
-
-    comparacao(populacao1, populacao2);
-    //comparacao(area1,area2);
-    //comparacao(pib1,pib2);
-    //comparacao(pibCapital1, pibCapital2);
-    /*if(densidade1 > densidade2)
-    {
-        printf("carta2 vence/n");
-    }else{
-        printf("carta1 vence/n");
-    }*/
-
 }
