@@ -5,10 +5,25 @@
 int leitura()
 {
     int valor;
-    printf("JOGO DE JOKENPO\n\nEscolha uma jogada:\n1.Pedra\n2.Papel\n3.Tesoura\n\n");
+    printf("JOGO DE JOKENPO\n\nEscolha uma jogada:\n1.Pedra\n2.Papel\n3.Tesoura\n");
     scanf("%d", &valor);
 
     return valor;
+}
+
+void comparacao(int jogador, int maquina)
+{
+    if(jogador == maquina)
+    {
+        printf("### Empate! ###");
+    }else if(jogador == 1 && maquina == 3 ||
+            jogador == 2 && maquina == 1 ||
+            jogador == 3 && maquina == 2)
+    {
+        printf("### Jogador vence! ###\n\n");
+    }else{
+        printf("### Jogador perde! ###\n\n");
+    }
 }
 
 void jokenpo(int escolha, char ID[8])
@@ -50,5 +65,6 @@ int main()
     jogador = leitura();
     jokenpo(jogador,IDJ);
     jokenpo(maquina,IDM);
+    comparacao(jogador,maquina);
 
 }
