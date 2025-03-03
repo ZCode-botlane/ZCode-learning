@@ -32,34 +32,77 @@ float calcularValores(int valor1, float valor2)
     return resultado;
 }
 
-void comparacao(int unsigned carta1, int unsigned carta2)
+int comparacao(int unsigned carta1, int unsigned carta2, char ID[20])
 {
     if (carta1 > carta2)
     {
-        printf("\n### CARTA1 VENCE ###\n");
+        printf("\ncarta1 superior em %s\n", ID);
+       
+    } else if (carta1 == carta2) {
+        printf("\ncarta2 igual a carta1 em %s\n", ID);
+        
     } else {
-        printf("\n### CARTA2 VENCE ###\n");
+        printf("\ncarta2 superior em %s\n", ID);
+
     }
+}
+int calculo(int valor1, int valor2)
+{
+    int resultado;
+
+    resultado = valor1+valor2;
+   /* if (valor1 == 1)
+    {
+        if (valor2 == 2)
+        {
+            resultado = populacao1+area1;
+        } 
+        if (valor2 == 3)
+        {
+            resultado = populacao1+pib1;
+        } 
+        if (valor2 == 4)
+        {
+            resultado = populacao1+turistico1;
+        } 
+        if (valor2 == 5)
+        {
+            resultado = populacao1+superPoder1;
+        }
+        if (valor2 == 6)
+        {
+            resultado = populacao1+(1/densidade1);
+        } 
+    }*/ 
+    
+
+    return resultado;
 }
 
 void menuInterativo(int escolha)
 {
+    char populacao[20] = "POPULAÇÃO";
+    char area[20] = "AREA";
+    char PIB[20] = "PIB";
+    char turistico[20] = "PONTO TURISTICO";
+    char superPoder[20] = "SUPER PODER";
+
     switch (escolha)
     {
     case 1:
-        comparacao(populacao1,populacao2);
+        comparacao(populacao1,populacao2, populacao);
         break;
     case 2:
-        comparacao(area1,area2);
+        comparacao(area1,area2, area);
         break;
     case 3:
-        comparacao(pib1,pib2);
+        comparacao(pib1,pib2, PIB);
         break;
     case 4:
-        comparacao(turistico1,turistico2);
+        comparacao(turistico1,turistico2, turistico);
         break;
     case 5:
-        comparacao(superPoder1,superPoder2);
+        comparacao(superPoder1,superPoder2, superPoder);
         break;
     case 6:
         if (densidade1 < densidade2)
@@ -68,6 +111,7 @@ void menuInterativo(int escolha)
         }else{
             printf("carta2 vence");
         }
+        break;
     default:
         printf("Escolha invalida");
         break;
@@ -115,10 +159,20 @@ int main()
     superPoder2 = (populacao2+area2+pib2+turistico2+pibCapital2)+1/densidade2;
 
     //comparação
-    int escolha;
-    printf("\nCHOQUE DE ATRIBUTOS\n\n1.População\n2.Area\n3.PIB\n4.Pontos turisticos\n5.Super poder\n6.Densidade demográdica\nescolha um numero: ");
-    scanf("%d", &escolha);
-    menuInterativo(escolha);
+    int escolha1;
+    int escolha2;
+    int soma1;
+    int soma2;
+    int resultado;
+    printf("\nCHOQUE DE ATRIBUTOS\n\n1.População\n2.Area\n3.PIB\n4.Pontos turisticos\n5.Super poder\n6.Densidade demográdica\nescolha dois numeros: ");
+    scanf("%d", &escolha1);
+    scanf("%d", &escolha2);
+    menuInterativo(escolha1);
+    menuInterativo(escolha2);
+    soma1 = (escolha1 == 1) ? populacao1 : (escolha1 == 2) ? area1 : (escolha1 == 3) ? pib1 : (escolha1 == 4) ? turistico1 : (escolha1 == 5) ? superPoder1;
+    soma1 = (escolha2 == 1) ? populacao2 : (escolha2 == 2) ? area2 : (escolha2 == 3) ? pib2 : (escolha2 == 4) ? turistico2 : (escolha2 == 5) ? superPoder2;
+    resultado = soma1+soma2;
+    comparacao(soma1+soma2);
 
     //print das informações das cartas
     printf("\nCARTA01 \nEstado: %c\nCodigo: %s\nCidade: %s\nPopulação: %d\nArea: %f\nPIB: %f\nDensidade Populacional: %f\nPIB per Capita: %f\nSuper poder: %f\n\n", estado1, codigo1, cidade1, populacao1, area1, pib1, densidade1, pibCapital1, superPoder1);
