@@ -32,7 +32,7 @@ float calcularValores(int valor1, float valor2)
     return resultado;
 }
 
-int comparacao(int unsigned carta1, int unsigned carta2, char ID[20])
+int comparacao(int unsigned carta1, int unsigned carta2, char ID[50])
 {
     if (carta1 > carta2)
     {
@@ -45,38 +45,6 @@ int comparacao(int unsigned carta1, int unsigned carta2, char ID[20])
         printf("\ncarta2 superior em %s\n", ID);
 
     }
-}
-int calculo(int valor1, int valor2)
-{
-    int resultado;
-
-    resultado = valor1+valor2;
-   /* if (valor1 == 1)
-    {
-        if (valor2 == 2)
-        {
-            resultado = populacao1+area1;
-        } 
-        if (valor2 == 3)
-        {
-            resultado = populacao1+pib1;
-        } 
-        if (valor2 == 4)
-        {
-            resultado = populacao1+turistico1;
-        } 
-        if (valor2 == 5)
-        {
-            resultado = populacao1+superPoder1;
-        }
-        if (valor2 == 6)
-        {
-            resultado = populacao1+(1/densidade1);
-        } 
-    }*/ 
-    
-
-    return resultado;
 }
 
 void menuInterativo(int escolha)
@@ -163,16 +131,24 @@ int main()
     int escolha2;
     int soma1;
     int soma2;
-    int resultado;
-    printf("\nCHOQUE DE ATRIBUTOS\n\n1.População\n2.Area\n3.PIB\n4.Pontos turisticos\n5.Super poder\n6.Densidade demográdica\nescolha dois numeros: ");
+    int soma3;
+    int soma4;
+    int resultado1;
+    int resultado2;
+    printf("\nCHOQUE DE ATRIBUTOS\n\n1.População\n2.Area\n3.PIB\n4.Pontos turisticos\n5.Super poder\n6.Densidade demográdica\nescolha um numero: ");
     scanf("%d", &escolha1);
+    printf("escolha outro numero: ")
     scanf("%d", &escolha2);
     menuInterativo(escolha1);
     menuInterativo(escolha2);
-    soma1 = (escolha1 == 1) ? populacao1 : (escolha1 == 2) ? area1 : (escolha1 == 3) ? pib1 : (escolha1 == 4) ? turistico1 : (escolha1 == 5) ? superPoder1;
-    soma1 = (escolha2 == 1) ? populacao2 : (escolha2 == 2) ? area2 : (escolha2 == 3) ? pib2 : (escolha2 == 4) ? turistico2 : (escolha2 == 5) ? superPoder2;
-    resultado = soma1+soma2;
-    comparacao(soma1+soma2);
+    soma1 = (escolha1 == 1) ? populacao1 : (escolha1 == 2) ? area1 : (escolha1 == 3) ? pib1 : (escolha1 == 4) ? turistico1 : (escolha1 == 5) ? superPoder1 : 0;
+    soma2 = (escolha2 == 1) ? populacao1 : (escolha1 == 2) ? area1 : (escolha1 == 3) ? pib1 : (escolha1 == 4) ? turistico1 : (escolha1 == 5) ? superPoder1 : (escolha2 == escolha1) ? 0 : 0;
+    soma3 = (escolha1 == 1) ? populacao2 : (escolha1 == 2) ? area2 : (escolha1 == 3) ? pib2 : (escolha1 == 4) ? turistico2 : (escolha1 == 5) ? superPoder2 : 0;
+    soma4 = (escolha2 == 2) ? populacao2 : (escolha2 == 2) ? area2 : (escolha2 == 3) ? pib2 : (escolha2 == 4) ? turistico2 : (escolha2 == 5) ? superPoder2 : (escolha2 == escolha1) ? 0 : 0;
+
+    resultado1 = soma1+soma2;
+    resultado2 = soma3+soma4;
+    comparacao(resultado1,resultado2, "soma dos valores escolhidos");
 
     //print das informações das cartas
     printf("\nCARTA01 \nEstado: %c\nCodigo: %s\nCidade: %s\nPopulação: %d\nArea: %f\nPIB: %f\nDensidade Populacional: %f\nPIB per Capita: %f\nSuper poder: %f\n\n", estado1, codigo1, cidade1, populacao1, area1, pib1, densidade1, pibCapital1, superPoder1);
