@@ -32,10 +32,12 @@ int main()
     {
         for(int i = 1; i<=casas; i++)
         {
+            int j = casas;
             printf("baixo \n");
-            for(int j = casas; j == i; j++)
+            while( j == i)
             {
                 printf("esquerda\n");
+                j++;
             }
     
         }
