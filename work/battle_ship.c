@@ -2,6 +2,8 @@
 
 #define LINHAS 10
 #define COLUNAS 10
+#define LINHA_HAB 3
+#define COLUNA_HAB 5
 #define TAMANHO 3
 int tabuleiro[LINHAS][COLUNAS];
 
@@ -10,6 +12,60 @@ int posicaoNavio(int valor)
     int posicao = valor;
     return valor;
 }
+
+void ativacaoHB(int matriz1[LINHAS][COLUNAS], int matriz2[LINHA_HAB][COLUNA_HAB], int origemX, int origemY) {
+    for (int i = 0; i < LINHA_HAB; i++) {
+        for (int j = 0; j < COLUNA_HAB; j++) {
+            if (origemX + i < LINHAS && origemY + j < COLUNAS) {
+                matriz1[origemX + i][origemY + j] = matriz2[i][j];
+            }
+        }
+    }
+}
+
+int habilidades()
+{
+    int cone[3][5];
+    int cruz[3][5];
+    int octaedro[3][5];
+
+    for (int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j<5; j++)
+        {
+            octaedro[i][j] = 0;
+            octaedro[0][2] = 5;
+            octaedro[1][1] = 5;
+            octaedro[1][2] = 5;
+            octaedro[1][3] = 5;
+            octaedro[2][2] = 5;
+
+            cone[i][j] = 0;
+            cone[0][2] = 5;
+            cone[1][1] = 5;
+            cone[1][2] = 5;
+            cone[1][3] = 5;
+            cone[2][j] = 5;
+
+            cruz[i][j] = 0;
+            cruz[0][2] = 5;
+            cruz[1][j] = 5;
+            cruz[2][2] = 5;
+        }
+   
+    }
+
+    for(int i = 0; i<LINHAS; i++)
+    {
+        for(int j = 0; j<COLUNAS; j++)
+        {
+            ativacaoHB(tabuleiro, cone, 7,1);
+            ativacaoHB(tabuleiro, octaedro, 3,2);
+        }
+    }
+    
+}
+
 void navios()
 {
     int navio1[TAMANHO];
@@ -29,55 +85,29 @@ void navios()
     //adicionando os navios no tabuleiro
     for (int i = 0; i < TAMANHO; i++)
     {
-        int linha_1 = 1;
-        int coluna_1 = i+1;
-        tabuleiro[linha_1][coluna_1] = navio1[i];
-        int posicaoN1 = tabuleiro[linha_1][coluna_1];
-
-        for (int j = 0; j < TAMANHO; j++)
-        {   
-            int linha_2 = j+3;
-            int coluna_2 = 2;
-
-            if(coluna_1 == coluna_2 && linha_1 == linha_2)
-            {
-                printf("os navios 2 e demais estão se sobrepondo");
-                exit(8);
-            }else{
-            tabuleiro[linha_2][coluna_2] = navio2[j];
-            int posicaoN2 = tabuleiro[linha_2][coluna_2];
-            }
+        for(int j = 0; j<TAMANHO; j++)
+        {
+            int linha_1 = 1;
+            int coluna_1 = j+1;
+            tabuleiro[linha_1][coluna_1] = navio1[i];
+            int posicaoN1 = tabuleiro[linha_1][coluna_1];
             
-                for (int y = 0; y < TAMANHO; y++)
-                {   
-                    int linha_3 = y+1;
-                    int coluna_3 = y+5;
-        
-                    if(coluna_1 == coluna_3 && linha_1 == linha_3 || coluna_2 == coluna_3 && linha_2 == linha_3 )
-                    {
-                        printf("os navios 3 e demais estão se sobrepondo");
-                        exit(8);
-                    }else{
-                    tabuleiro[linha_3][coluna_3] = navio3[j];
-                    int posicaoN2 = tabuleiro[linha_3][coluna_3];
-                    }
+            int linha_2 = i+3;
+            int coluna_2 = 1;
+            tabuleiro[linha_2][coluna_2] = navio2[i];
+            int posicaoN2 = tabuleiro[linha_2][coluna_2];
 
-                        for (int g = 0; g < TAMANHO; g++)
-                        {   
-                            int linha_4 = g+4;
-                            int coluna_4 = g+5;
-                
-                            if(coluna_1 == coluna_4 && linha_1 == linha_4 || coluna_2 == coluna_4 && linha_2 == linha_4 || coluna_3 == coluna_4 && linha_3 == linha_4 )
-                            {
-                                printf("os navios 4 e demais estão se sobrepondo");
-                                exit(8);
-                            }else{
-                            tabuleiro[linha_4][coluna_4] = navio4[j];
-                            int posicaoN2 = tabuleiro[linha_4][coluna_4];
-                            }
-                        }
-            }
+            int linha_3 = i+6;
+            int coluna_3 = i+6;
+            tabuleiro[linha_3][coluna_3] = navio3[i];
+            int posicaoN3 = tabuleiro[linha_3][coluna_3];
+
+            int linha_4 = i+3;
+            int coluna_4 = i+7;
+            tabuleiro[linha_4][coluna_4] = navio4[i];
+            int posicaoN4 = tabuleiro[linha_3][coluna_3];
         }
+        
     }   
 }
 
@@ -90,7 +120,11 @@ void tabuleiroPosition ()
         for(int j = 0; j<COLUNAS; j++)
         {
             tabuleiro[i][j] = 0;
-            navios();
+            habilidades();
+            if(tabuleiro[i][j] == 0)
+            {
+                navios();
+            }
             
         }
     }
@@ -126,5 +160,6 @@ int main()
 
     //inicializando a função do tabuleiro
     tabuleiroPosition ();
+    printf("\n");
     return 0;
 }
