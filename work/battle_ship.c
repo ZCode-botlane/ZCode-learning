@@ -60,7 +60,8 @@ int habilidades()
         for(int j = 0; j<COLUNAS; j++)
         {
             ativacaoHB(tabuleiro, cone, 7,1);
-            ativacaoHB(tabuleiro, octaedro, 3,2);
+            ativacaoHB(tabuleiro, octaedro, 1,5);
+            ativacaoHB(tabuleiro, cruz, 3,2);
         }
     }
     
@@ -102,7 +103,7 @@ void navios()
             tabuleiro[linha_3][coluna_3] = navio3[i];
             int posicaoN3 = tabuleiro[linha_3][coluna_3];
 
-            int linha_4 = i+3;
+            int linha_4 = i+5;
             int coluna_4 = i+7;
             tabuleiro[linha_4][coluna_4] = navio4[i];
             int posicaoN4 = tabuleiro[linha_3][coluna_3];
